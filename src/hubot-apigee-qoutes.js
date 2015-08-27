@@ -13,6 +13,10 @@
 //
 var request = require('request')
 module.exports = function(robot) {
+	robot.respond(/quote list/i, function(msg){           	
+        getCustomers(msg)
+    })
+
 	robot.respond(/quote (.*)/i, function(msg){           	
         var account = msg.match[1]
         getQuote(account,msg)
@@ -36,6 +40,20 @@ function getQuote(account,msg){
 			}
 		  	msg.send('>' + by)
 		  	msg.send('> ```' + e.quote + '```')
+		})
+	})
+}
+
+function getCustomers(msg)
+{
+	var url = process.env.HUBOT_APIGEE_QUOTES_URL
+	var ql = 'select customer'
+	request({
+        url:url + '?ql=' + ql 
+    },function(error,response,body){
+		var b = JSON.parse(body)
+		b.list.forEach(function(l){
+		  	msg.send('>' + l[0])
 		})
 	})
 }
