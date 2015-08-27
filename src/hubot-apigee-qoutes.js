@@ -20,11 +20,6 @@ var key = process.env.HUBOT_APIGEE_QUOTES_KEY
 
 module.exports = function(robot) {
 	
-	robot.respond(/quote/i, function(msg){           	
-        msg.send('> use one of these customers to see their Quote')
-        getCustomers(msg)
-    })
-
 	robot.respond(/quote list/i, function(msg){           	
         getCustomers(msg)
     })
