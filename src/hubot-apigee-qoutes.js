@@ -36,7 +36,7 @@ function getQuote(account,msg){
 	
 	var ql = 'select * where customer contains \'' + account + '*\''
 	request({
-        url:url + '?ql=' + ql + '&apikey=' + key
+        url:url + '?ql=' + ql + '&apikey=' + key + '&limit=5'
     },function(error,response,body){
 		var b = JSON.parse(body)
 		b.entities.forEach(function(e){
