@@ -31,6 +31,9 @@ function getQuote(account,msg){
 			if(e.title){
 				by+= ', ' + e.title
 			}
+			if ( e.customer){
+				by+= ', ' + e.customer
+			}
 		  	msg.send('>' + by)
 		  	msg.send('> ```' + e.quote + '```')
 		})
