@@ -6,8 +6,8 @@
 // 	 HUBOT_APIGEE_QUOTES_KEY - API Key
 //
 // Commands:
-//   hubot quote <customer> - 
-//
+//   hubot quote <customer> - gives quote by this customer
+//   hubot quote list  - gives list of customer quotes available
 //
 // Author:
 //   mukundha@apigee.com <mukundha@apigee.com>
