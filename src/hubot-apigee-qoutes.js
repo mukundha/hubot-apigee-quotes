@@ -27,8 +27,13 @@ module.exports = function(robot) {
 	robot.respond(/quote(.*)/i, function(msg){           	
         var account = msg.match[1]
         if(!account)
-        	account=''
-        getQuote(account,msg)
+        {
+        	msg.send('> USAGE: chatbot quote <customer>')
+        	msg.send('> select one of these customers and try!')
+        	getCustomers(msg)
+        }else{
+        	getQuote(account,msg)
+    	}
     })
 }
 
