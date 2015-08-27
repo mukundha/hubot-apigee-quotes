@@ -24,7 +24,7 @@ module.exports = function(robot) {
         getCustomers(msg)
     })
 
-	robot.respond(/quote (.*)/i, function(msg){           	
+	robot.respond(/quote(.*)/i, function(msg){           	
         var account = msg.match[1]
         if(!account)
         	account=''
