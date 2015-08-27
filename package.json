@@ -1,7 +1,7 @@
 {
   "name": "hubot-apigee-qoutes",
   "description": "Search for Apigee Quotes by customers",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "mukundha@apigee.com <mukundha@apigee.com>",
   "license": "MIT",
 

@@ -25,15 +25,14 @@ function getQuote(account,msg){
 	request({
         url:url + '?ql=' + ql 
     },function(error,response,body){
-    	console.log(body)
 		var b = JSON.parse(body)
 		b.entities.forEach(function(e){
 			var by = e.by
 			if(e.title){
-				by+= ',' + e.title
+				by+= ', ' + e.title
 			}
 		  	msg.send('>' + by)
-		  	msg.send('```' + e.quote + '```')
+		  	msg.send('> ```' + e.quote + '```')
 		})
 	})
 }
