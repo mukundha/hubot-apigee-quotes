@@ -6,6 +6,7 @@
 // 	 HUBOT_APIGEE_QUOTES_KEY - API Key
 //
 // Commands:
+//	 hubot quote - gives a random Customer quote
 //   hubot quote <customer> - gives quote by this customer
 //   hubot quote list  - gives list of customer quotes available
 //
@@ -18,6 +19,12 @@ var url = process.env.HUBOT_APIGEE_QUOTES_URL
 var key = process.env.HUBOT_APIGEE_QUOTES_KEY
 
 module.exports = function(robot) {
+	
+	robot.respond(/quote/i, function(msg){           	
+        msg.send('> use one of these customers to see their Quote')
+        getCustomers(msg)
+    })
+
 	robot.respond(/quote list/i, function(msg){           	
         getCustomers(msg)
     })
