@@ -21,7 +21,7 @@ module.exports = function(robot) {
 
 function getQuote(account,msg){
 	var url = process.env.HUBOT_APIGEE_QUOTES_URL
-	var ql = 'select * where customer contains \'' + account + '\''
+	var ql = 'select * where customer contains \'' + account + '*\''
 	request({
         url:url + '?ql=' + ql 
     },function(error,response,body){
