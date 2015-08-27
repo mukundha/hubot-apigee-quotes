@@ -2,7 +2,8 @@
 //   Search for Apigee Quotes by customers
 //
 // Configuration:
-//   HUBOT_APIGEE_QUOTES_URL
+//   HUBOT_APIGEE_QUOTES_URL - API url
+// 	 HUBOT_APIGEE_QUOTES_KEY - API Key
 //
 // Commands:
 //   hubot quote <customer> - 
@@ -12,6 +13,10 @@
 //   mukundha@apigee.com <mukundha@apigee.com>
 //
 var request = require('request')
+
+var url = process.env.HUBOT_APIGEE_QUOTES_URL
+var key = process.env.HUBOT_APIGEE_QUOTES_KEY
+
 module.exports = function(robot) {
 	robot.respond(/quote list/i, function(msg){           	
         getCustomers(msg)
@@ -24,10 +29,10 @@ module.exports = function(robot) {
 }
 
 function getQuote(account,msg){
-	var url = process.env.HUBOT_APIGEE_QUOTES_URL
+	
 	var ql = 'select * where customer contains \'' + account + '*\''
 	request({
-        url:url + '?ql=' + ql 
+        url:url + '?ql=' + ql + '&apikey=' + key
     },function(error,response,body){
 		var b = JSON.parse(body)
 		b.entities.forEach(function(e){
@@ -46,14 +51,16 @@ function getQuote(account,msg){
 
 function getCustomers(msg)
 {
-	var url = process.env.HUBOT_APIGEE_QUOTES_URL
 	var ql = 'select customer'
 	request({
-        url:url + '?ql=' + ql 
+        url:url + '?ql=' + ql + '&apikey=' + key + '&limit=100'
     },function(error,response,body){
 		var b = JSON.parse(body)
+		var customers = []
 		b.list.forEach(function(l){
-		  	msg.send('>' + l[0])
+			if(customers.indexOf(l[0]) < 0)
+				customers.push(l[0])		  	
 		})
+		msg.send('```' + customers + '```')
 	})
 }
