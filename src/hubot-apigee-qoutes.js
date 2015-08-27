@@ -26,6 +26,8 @@ module.exports = function(robot) {
 
 	robot.respond(/quote (.*)/i, function(msg){           	
         var account = msg.match[1]
+        if(!account)
+        	account=''
         getQuote(account,msg)
     })
 }
